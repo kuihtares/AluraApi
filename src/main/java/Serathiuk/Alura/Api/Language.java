@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.lang.annotation.Documented;
 
-@Document(collection = "Alura.mainLanguages\n")
+@Document(collection = "mainLanguages")
 
 public class Language {
     @Id
@@ -13,6 +13,9 @@ public class Language {
     private String title;
     private String image;
     private int ranking;
+    @Deprecated
+    public Language() {
+    }
 
     public Language(String title, String image, int ranking) {
         this.title = title;
