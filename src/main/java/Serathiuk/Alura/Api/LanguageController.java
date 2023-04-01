@@ -1,5 +1,6 @@
 package Serathiuk.Alura.Api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,11 +8,9 @@ import java.util.List;
 
 @RestController
 public class LanguageController {
-    private List<Language> languages =
-            List.of(
-                    new Language("Java","https://raw.githubusercontent.com/abrahamcalf/programming-languages-logos/master/src/java/java_256x256.png", 2 ),
-                    new Language("PhP", "https://raw.githubusercontent.com/abrahamcalf/programming-languages-logos/master/src/php/php_256x256.png", 2)
-            );
+
+    @Autowired
+    private Repository repository;
 
     @GetMapping(value="/preferred-language")
     public String processLanguage () {
@@ -19,6 +18,7 @@ public class LanguageController {
     }
     @GetMapping("/languages")
     public List<Language> obtainLanguage(){
+        List<Language> languages = repository.findAll();
         return  languages;
     }
 
